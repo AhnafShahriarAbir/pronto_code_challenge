@@ -1,5 +1,5 @@
 from Movement import Movement
-
+from UserInput import UserInput
 
 class Main:
     def printf(self):
@@ -7,5 +7,7 @@ class Main:
 
 main = Main()
 mv = Movement()
-mv.functionprint()
+uinput = UserInput()
+uinput.functionprint()
+# mv.functionprint()
 # main.printf()
