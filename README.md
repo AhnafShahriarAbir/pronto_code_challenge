@@ -10,4 +10,4 @@ Requirements:
 
 conditions:
 	1. Robot can turn 90 degrees at a time.
-	2. 
+	
