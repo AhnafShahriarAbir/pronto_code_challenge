@@ -6,10 +6,12 @@ class Movement:
     def move_forward_x_axis(self, value):
         if value > 0 and value != 0:
             self.x_value += value
+            print("I moved forward {} times".format(value))
 
     def move_backward_x_axis(self, value):
         if value != 0:
             self.x_value -= abs(value)
+            print("I moved backward {} times".format(value))
     
     def move_forward_y_axis(self, value):
         if value > 0 and value != 0:

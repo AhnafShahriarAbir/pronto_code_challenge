@@ -1,3 +1,5 @@
+#!bin/python3
+
 from Movement import Movement
 from UserInput import UserInput
 
