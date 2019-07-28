@@ -11,20 +11,22 @@ Requirements:
 conditions:
 	1. Robot can turn 90 degrees at a time.
 
-* **code_challenge.py** - This is the main program of ticket viewer. This module has **display_menu** and **menu**
-to show menu title and options.
+* **Main.py** - This is the main module to start the program.
 
-* **tickets.json** - This is the provided json file.
+* **Movement.py** - This is the file which has the commands such as move forward, move backwar, turn left, turn right.
 
-* **credentials.json** - This contains the **subdomain name**, **user email** and **password** as json format.
-This can be reconfigured with any other user's credentials to get tickets for different user.
+* **Orientation.py** - This contains the enum **North**, **South**, **East** and **West** which is used in robot's orientation.
+
+* **Robot.py** - This file contains all the singleton structure for initialising the robot, getting direction as well the axis values.
+* **UserInput.py** - This file takes the user's input and converts to commands for the robot.
+* **DistanceFinder.py**  - This is the file which conains the Dijkstra's algorithm to get the shortest route for the robot to it's way back home.
 
 ## Assumptions made:
-	* Robot cannot rotate more than once at a time, but can rotate with consecutive commands.
-	* Robot can move upto 9 times at a time as double digit will make the program more complex.
-	*
+	* Robot cannot rotate more than once at a time, but can rotate with consecutive commands. 
+		For example, F1,R3 won't work whereas F1,R1,R1,R1 will work.
+	* Robot can move upto 9 times at a time to reduce the complexity.
+	* Robot's staring position is 0,0 at North. This can be changed from the Movement.py file.
 	
-
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
@@ -41,7 +43,7 @@ check the python version to verify installation was successful
 - python3 version
  ```
 <p align="center">
-  <img src="images/version_check.png" width="350" title="hover text">
+  <img src="version_check.png" width="350" title="hover text">
 </p>
 
  
@@ -55,6 +57,7 @@ Update the pip first to latest version.
 pip3 install --upgrade pip
  ```
 
+If needed:
 Install requests[security] to resolve the issue with SSLError from requests
 ```
 pip3 install -U requests[security]
@@ -81,7 +84,7 @@ chmod +x Main.py
 ```
 Then 
 ```
-./code_challenge.py
+./Main.py
 ```
 to run the main program.
 
@@ -98,11 +101,20 @@ This program is tested on
     axis values which will give the 90 degree anti-clockwise rotation. The 'F4'
     will then be multiplied with that result to get the overall outcome. 
     
-## Bugs Found:
-	* 
+## Shortest Distance:
+    To find the shortest distance, Dijkstra's algorithm should be used where it will check
+    if robot's current location is smaller than it's neighbour, then robot will move to   
+    the position. This will continue until the robot reaches home at (0, 0). 
+    I wasn't aware of the Dijkstra's algorithm, I tried with A** Search but didn't get
+    the shortest route as expected which was mentioned in some of the conversation in
+    stackoverflow too but eventually this consumed some of my time. 
+    I beleive with this logic and use of Dijkstra's algorithm would make
+    it possible to find the shortest distance.
+    
+
 ## Author
 
 * **Ahnaf Shahriar Abir** - [pronto_code_challenge](https://github.com/AhnafShahriarAbir/pronto_code_challenge)
    **email:** abir3577189@gmail.com
 
-### Thank you for Reading me          - Readme.md
+### Thank you for Reading me          - Readme.md :)
