@@ -86,6 +86,12 @@ class Movement:
             print("""Robot is not facing at any direction.
              Probably sleeping..zzzz""")
 
+    def facing(self):
+        return robot.get_orientation()
+
+    def get_robot_position(self):
+        return robot.current_position()
+
     def functionprint(self):
         print(robot.current_position())
         self.move_forward_y_axis(5)
@@ -96,5 +102,3 @@ class Movement:
         self.turn_left()
         print(robot.current_position())
 
-mv = Movement()
-mv.functionprint()

@@ -1,6 +1,7 @@
 from os import system
 import re
 from Movement import Movement
+from Orientation import OrientationEnum
 mv = Movement()
 directions = []
 
@@ -24,42 +25,59 @@ class UserInput():
             system(exit)
 
         if value is not None:
+            facing = mv.facing()
             if "F" in move:
-                mv.move_forward_x_axis(value)
+                if facing == OrientationEnum.East.value or facing == OrientationEnum.West.value:
+                    mv.move_forward_x_axis(value)
+
+                elif facing == OrientationEnum.North.value or facing == OrientationEnum.South.value:
+                    mv.move_forward_y_axis(value)
 
             elif "B" in move:
-                mv.move_backward_x_axis(value)
+                if facing == OrientationEnum.East.value or facing == OrientationEnum.West.value:
+                    mv.move_backward_x_axis(value)
+                    
+                elif facing == OrientationEnum.North.value or facing == OrientationEnum.South.value:
+                    mv.move_backward_y_axis(value)
 
             elif "R" in move:
+                if value > 1:
+                    print("""Robot can rotate only once at a time.\n
+                        Please write 1 with your direction""")
                 mv.turn_right()
 
             elif "L" in move:
-                pass
+                if value > 1:
+                    print("""Robot can rotate only once at a time.\n
+                        Please write 1 with your direction""")
+
+                mv.turn_left()
 
             else:
-                print("I did not move")   
-            
+                print("Robot did not move!! Something is wrong.")
+
     def functionprint(self):
         self.title()
         userInput = None
         try:
-            userInput = input("Please enter like F1 or R1\n")
-
+            userInput = input("Please enter like F1,R1\n")
         except:
             print("please enter correct string")
        
         if userInput is not None and len(userInput) > 1:
-            data = userInput.split(",")
-            print(data)
+            try:
+                data = userInput.split(",")
+            except:
+                print("Please write directions separated by commas")
+            
             # for i in range(0, len(userInput) - 1, 2):
             #    firstOne = userInput[i:i+2]
             #    directions.append(data)
             #     # #check = bool(re.search(r'^\D\d$', direction))
             
             for direction in data:
-                print(direction)
                 self.checkMovement(direction)
-            print(mv.current_position())
+                print(mv.get_robot_position())
         else:
             print("Please type at least 2 characters")
                     
