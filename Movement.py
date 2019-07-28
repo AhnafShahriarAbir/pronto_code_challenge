@@ -1,14 +1,24 @@
 from Orientation import OrientationEnum
 from Robot import Robot
 
-robot = Robot(0, 0, "West")
+# This initiates the robot with x, y and orientation value
+robot = Robot(0, 0, OrientationEnum.North.value)
 
 
 class Movement:
+    """
+        This class contains all the functions needed for 
+        the commands those will be passed to the robot.
+    """
+
     def move_forward_x_axis(self, value):
         facing = robot.get_orientation()
-        if value > 0 and facing == "East" or facing == "West":
-            if facing == "West":
+        if (
+            value > 0
+            and facing == OrientationEnum.East.value
+            or facing == OrientationEnum.West.value
+        ):
+            if facing == OrientationEnum.West.value:
                 new_value = robot.get_x_value() - value
             else:
                 new_value = robot.get_x_value() + value
@@ -19,8 +29,12 @@ class Movement:
 
     def move_backward_x_axis(self, value):
         facing = robot.get_orientation()
-        if value > 0 and facing == "East" or facing == "West":
-            if facing == "West":
+        if (
+            value > 0
+            and facing == OrientationEnum.East.value
+            or facing == OrientationEnum.West.value
+        ):
+            if facing == OrientationEnum.West.value:
                 new_value = robot.get_x_value() + value
             else:
                 new_value = robot.get_x_value() - value
@@ -31,8 +45,12 @@ class Movement:
 
     def move_forward_y_axis(self, value):
         facing = robot.get_orientation()
-        if value > 0 and facing == "North" or facing == "South":
-            if facing == "South":
+        if (
+            value > 0
+            and facing == OrientationEnum.North.value
+            or facing == OrientationEnum.South.value
+        ):
+            if facing == OrientationEnum.South.value:
                 new_value = robot.get_y_value() - value
             else:
                 new_value = robot.get_y_value() + value
@@ -43,8 +61,12 @@ class Movement:
 
     def move_backward_y_axis(self, value):
         facing = robot.get_orientation()
-        if value != 0 and facing == "North" or facing == "South":
-            if facing == "South":
+        if (
+            value != 0
+            and facing == OrientationEnum.North.value
+            or facing == OrientationEnum.South.value
+        ):
+            if facing == OrientationEnum.South.value:
                 new_value = robot.get_y_value() + value
             else:
                 new_value = robot.get_x_value() - value
@@ -72,7 +94,10 @@ class Movement:
         elif facing == OrientationEnum.West.value:
             robot.set_orientation(OrientationEnum.North.value)
         else:
-            print("Robot is not facing at any direction. Probably sleeping..zzzz")
+            print(
+                """Robot is not facing at any direction.
+                 Probably sleeping..zzzz"""
+            )
 
     def turn_left(self):
         facing = robot.get_orientation()
@@ -96,27 +121,3 @@ class Movement:
     def get_robot_position(self):
         return robot.current_position()
 
-    def functionprint(self):
-        print(robot.current_position())
-        self.move_forward_x_axis(5)
-        print(robot.current_position())
-        self.move_backward_x_axis(9)
-        print(robot.current_position())
-        self.turn_left()
-        print(robot.current_position())
-        self.move_forward_y_axis(2)
-        self.turn_left()
-
-        print(robot.current_position())
-        self.move_backward_x_axis(9)
-        print(robot.current_position())
-        # self.turn_left()
-        # self.turn_left()
-        # print(robot.current_position())
-        # self.move_forward_y_axis(2)
-        # print(robot.current_position())
-
-
-mv = Movement()
-mv.functionprint()
-mv.facing()

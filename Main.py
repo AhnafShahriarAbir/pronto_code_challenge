@@ -1,16 +1,11 @@
-#!bin/python3
+#!/usr/bin/env python3
 
 from Movement import Movement
 from UserInput import UserInput
 
 
 class Main:
-    def printf(self):
-        print("Hello world")
+    uinput = UserInput()
+    uinput.get_input()
 
 main = Main()
-mv = Movement()
-uinput = UserInput()
-uinput.functionprint()
-# mv.functionprint()
-# main.printf()

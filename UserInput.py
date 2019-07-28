@@ -2,17 +2,16 @@ from os import system
 import re
 from Movement import Movement
 from Orientation import OrientationEnum
-
 mv = Movement()
-directions = []
 
 
 class UserInput:
     def title(self):
         system("clear")
         print("*" * 10 + "  Hi, Give me directions please!!  " + "*" * 10)
+        print("")
 
-    def checkMovement(self, move):
+    def check_value(self, move):
         value = None
         try:
             value = int(move[1:2])
@@ -23,7 +22,14 @@ class UserInput:
         except:
             print("Please enter valid move")
             system(exit)
+        return value
 
+    def checkMovement(self, move):
+        """
+            This function checks for the validatiaon of the validation of the input 
+            by slicing the string first.
+        """
+        value = self.check_value(move)
         if value is not None:
             facing = mv.facing()
             if "F" in move:
@@ -54,25 +60,23 @@ class UserInput:
 
             elif "R" in move:
                 if value > 1:
-                    print(
-                        """Robot can rotate only once at a time.\n
-                        Please write 1 with your direction"""
-                    )
+                    print("Robot can rotate only once at a time.")
                 mv.turn_right()
 
             elif "L" in move:
                 if value > 1:
-                    print(
-                        """Robot can rotate only once at a time.\n
-                        Please write 1 with your direction"""
-                    )
+                    print("Robot can rotate only once at a time.")
 
                 mv.turn_left()
 
             else:
                 print("Robot did not move!! Something is wrong.")
 
-    def functionprint(self):
+    def get_input(self):
+        """ 
+            This function gets input from user and calls checkMovement to 
+            make the robot move or rotate.
+        """
         self.title()
         userInput = None
         try:
@@ -86,14 +90,9 @@ class UserInput:
             except:
                 print("Please write directions separated by commas")
 
-            # for i in range(0, len(userInput) - 1, 2):
-            #    firstOne = userInput[i:i+2]
-            #    directions.append(data)
-            #     # #check = bool(re.search(r'^\D\d$', direction))
-
             for direction in data:
                 self.checkMovement(direction)
-                print(mv.get_robot_position())
+            print(mv.get_robot_position())
         else:
             print("Please type at least 2 characters")
 

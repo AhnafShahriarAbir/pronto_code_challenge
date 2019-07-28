@@ -22,11 +22,4 @@ class Robot():
     def current_position(self):
         return (self.x_value, self.y_value, self.orientation)
 
-    def printfunc(self):
-        print(self.current_position())
-
-# robot = Robot(1, 2, "West")
-# robot.printfunc()
-# robot.set_position(5, 8)
-# robot.set_orientation("North")
-# robot.printfunc()
+ 
