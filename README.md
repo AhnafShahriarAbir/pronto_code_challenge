@@ -42,9 +42,7 @@ check the python version to verify installation was successful
  ```
 - python3 version
  ```
-<p align="center">
-  <img src="version_check.png" width="350" title="hover text">
-</p>
+
 
  
 ## Installing
