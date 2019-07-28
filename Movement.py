@@ -1,5 +1,6 @@
 from Orientation import OrientationEnum
 from Robot import Robot
+
 robot = Robot(0, 0, "West")
 
 
@@ -15,7 +16,7 @@ class Movement:
             robot.set_position(new_value, robot.get_y_value())
         else:
             print("Robot can not move that way. It's facing {}".format(facing))
-            
+
     def move_backward_x_axis(self, value):
         facing = robot.get_orientation()
         if value > 0 and facing == "East" or facing == "West":
@@ -54,14 +55,12 @@ class Movement:
 
     def print_forward(self, value):
         facing = robot.get_orientation()
-        print("I moved forward {} times in {} direction".format(
-                value, facing))
+        print("I moved forward {} times in {} direction".format(value, facing))
 
     def print_backward(self, value):
         facing = robot.get_orientation()
-        print("I moved backward {} times in {} direction".format(
-                value, facing))
-    
+        print("I moved backward {} times in {} direction".format(value, facing))
+
     def turn_right(self):
         facing = robot.get_orientation()
         if facing == OrientationEnum.North.value:
@@ -73,9 +72,7 @@ class Movement:
         elif facing == OrientationEnum.West.value:
             robot.set_orientation(OrientationEnum.North.value)
         else:
-            print(
-                "Robot is not facing at any direction. Probably sleeping..zzzz"
-                )
+            print("Robot is not facing at any direction. Probably sleeping..zzzz")
 
     def turn_left(self):
         facing = robot.get_orientation()
@@ -88,8 +85,10 @@ class Movement:
         elif facing == OrientationEnum.East.value:
             robot.set_orientation(OrientationEnum.North.value)
         else:
-            print("""Robot is not facing at any direction.
-             Probably sleeping..zzzz""")
+            print(
+                """Robot is not facing at any direction.
+             Probably sleeping..zzzz"""
+            )
 
     def facing(self):
         return robot.get_orientation()
@@ -116,6 +115,7 @@ class Movement:
         # print(robot.current_position())
         # self.move_forward_y_axis(2)
         # print(robot.current_position())
+
 
 mv = Movement()
 mv.functionprint()
